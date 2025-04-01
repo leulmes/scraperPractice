@@ -4,22 +4,6 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('node:fs');
 puppeteer.use(StealthPlugin());
 
-// (async () => {
-//     const browser = await puppeteer.launch({headless: false});
-//     const page = await browser.newPage();
-
-//     await page.goto("https://quotes.toscrape.com");
-//     let selector = 'div';//".row:not(.header-box) .col-md-8";
-//     await page.waitForSelector(selector);
-
-//     await page.evaluate((selector) => {
-//         // browser context
-//         const quotes = document.querySelector(selector);
-//         console.log("quotes: ",  document.querySelector(selector));
-
-//     });
-//     console.log("page: ", page);
-// })();
 (async () => {
     const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
