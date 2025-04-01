@@ -3,17 +3,14 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('node:fs');
 puppeteer.use(StealthPlugin());
-const arr = [];
 
 (async () => {
     const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
     await page.goto("https://books.toscrape.com/catalogue/category/books/classics_6/index.html");
-
     let selector = "ol.row";
-    let selector2 = "li";
-
     await page.waitForSelector(selector);
+    
     const booksFromBrowser = await page.evaluate((selector) => {
         // browser context
         const ol = document.querySelector(selector);
