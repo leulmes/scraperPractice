@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
     await page.goto("https://books.toscrape.com/catalogue/category/books/classics_6/index.html");
     let selector = "ol.row";
     await page.waitForSelector(selector);
-    
+
     const booksFromBrowser = await page.evaluate((selector) => {
         // browser context
         const ol = document.querySelector(selector);
@@ -42,7 +42,9 @@ puppeteer.use(StealthPlugin());
     }, selector);
     
     console.log("books: ", booksFromBrowser);
-    fs.writeFile('books.txt', JSON.stringify(booksFromBrowser), { flag: 'w+' }, err => {
+    const formattedJson = JSON.stringify(booksFromBrowser, null, 2);
+
+    fs.writeFile('books.txt', formattedJson, { flag: 'w+' }, err => {
         if (err) {
           console.error(err);
         } else {

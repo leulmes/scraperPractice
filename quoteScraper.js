@@ -42,6 +42,16 @@ puppeteer.use(StealthPlugin());
         return jsonObj;
     }, selector);
     console.log("quotes JSON: ", quoteJson);
+
+    const formattedJson = JSON.stringify(quoteJson, null, 2);
+    // write data to a file
+    fs.writeFile('quotes.txt', formattedJson, { flag: 'w+' }, err => {
+            if (err) {
+              console.error(err);
+            } else {
+              // file written successfully
+            }
+        });
     
    
 })();
